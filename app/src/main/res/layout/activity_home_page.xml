@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:circularflow_radiusInDP="10dp"
+    tools:context=".HomePage">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnBar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtSaludo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="@string/txtSaludo1"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/portada"
+                android:layout_width="0dp"
+                android:layout_height="300px"
+                android:layout_marginTop="15dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSaludo"
+                app:srcCompat="@drawable/homepage" />
+
+
+            <LinearLayout
+                android:id="@+id/progresoContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/portada">
+
+                <TextView
+                    android:id="@+id/txtProgresoTitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/firasans_semibold"
+                    android:text="@string/txtProgreso"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSaludo" />
+
+                <Button
+                    android:id="@+id/btnProgreso"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="top|center_horizontal"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    app:icon="@drawable/pen_to_square_solid"
+                    app:iconSize="15dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtProgresoMsg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/firasans"
+                android:text="@string/txtMsgHeaderProgreso"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progresoContainer" />
+
+            <ListView
+                android:id="@+id/listWishlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtProgresoMsg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/btnBar"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnWishlist"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/txtWishlist"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/bookmark_solid"
+            app:iconSize="15dp" />
+
+        <Button
+            android:id="@+id/btnColeccion"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="Colección"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/book_solid"
+            app:iconSize="15dp" />
+
+        <Button
+            android:id="@+id/btnTerminados"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/txtTerminados"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/check_solid"
+            app:iconPadding="8dp"
+            app:iconSize="15dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    app:circularflow_radiusInDP="10dp"-->
+<!--    tools:context=".HomePage">-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/linear"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/linear">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtSaludo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:text="@string/txtSaludo1"-->
+<!--                android:textSize="30sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/portada"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="300px"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/txtSaludo"-->
+<!--                app:srcCompat="@drawable/homepage" />-->
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/progresoContainer"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/portada">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtProgresoTitle"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="24dp"-->
+<!--                    android:layout_marginEnd="24dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="@string/txtProgreso"-->
+<!--                    android:textSize="25sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/txtSaludo" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnProgreso"-->
+<!--                    style="?android:attr/buttonBarButtonStyle"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="6"-->
+<!--                    android:gravity="top|center_horizontal"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:icon="@drawable/pen_to_square_solid"-->
+<!--                    app:iconSize="15dp" />-->
+
+<!--            </LinearLayout>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtProgresoMsg"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:text="@string/txtMsgHeaderProgreso"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/progresoContainer" />-->
+
+<!--            <ListView-->
+<!--                android:id="@+id/listWishlist"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/txtProgresoMsg" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </ScrollView>-->
+
+<!--    <LinearLayout-->
+<!--        style="?android:attr/buttonBarStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="0dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnWishlist"-->
+<!--            style="?android:attr/buttonBarButtonStyle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="@string/txtWishlist"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="11sp"-->
+<!--            app:cornerRadius="0dp"-->
+<!--            app:icon="@drawable/bookmark_solid"-->
+<!--            app:iconSize="15dp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnColeccion"-->
+<!--            style="?android:attr/buttonBarButtonStyle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:paddingTop="0dp"-->
+<!--            android:paddingBottom="0dp"-->
+<!--            android:text="Colección"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="11sp"-->
+<!--            app:cornerRadius="0dp"-->
+<!--            app:icon="@drawable/book_solid"-->
+<!--            app:iconSize="15dp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnTerminados"-->
+<!--            style="?android:attr/buttonBarButtonStyle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="@string/txtTerminados"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="11sp"-->
+<!--            app:cornerRadius="0dp"-->
+<!--            app:icon="@drawable/check_solid"-->
+<!--            app:iconPadding="8dp"-->
+<!--            app:iconSize="15dp" />-->
+<!--    </LinearLayout>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    &lt;!&ndash;    <Button&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/btnBibliotecas"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="fill_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="40dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="@string/txtBibliotecas"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="12sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintHorizontal_bias="1.0"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/btnTerminados" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <Button&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/btnWishlist"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="50dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="3dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="@string/txtWishlist"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="12sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@+id/btnTerminados"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/edtSearchBar" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <Button&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/btnTerminados"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="50dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="3dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginEnd="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="@string/txtTerminados"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="12sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/btnWishlist"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/edtSearchBar" />&ndash;&gt;-->

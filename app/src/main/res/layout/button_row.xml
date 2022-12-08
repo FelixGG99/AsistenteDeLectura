@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:divider="@drawable/trash_solid"
+    android:orientation="horizontal"
+    style="?android:attr/buttonBarStyle">
+
+    <Button
+        android:id="@+id/btnWishlist"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/txtWishlist"
+        android:textAlignment="center"
+        android:textSize="11sp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/bookmark_solid"
+        app:iconSize="15dp" />
+
+    <Button
+        android:id="@+id/btnColeccion"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:text="Colección"
+        android:textAlignment="center"
+        android:textSize="11sp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/book_solid"
+        app:iconSize="15dp" />
+
+    <Button
+        android:id="@+id/btnTerminados"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/txtTerminados"
+        android:textAlignment="center"
+        android:textSize="11sp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/check_solid"
+        app:iconPadding="8dp"
+        app:iconSize="15dp" />
+
+</LinearLayout>

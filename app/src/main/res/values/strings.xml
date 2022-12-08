@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Asistente de Lectura</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="txtSaludo1">¡Hola! ¿Qué leerás hoy? </string>
+    <string name="txtSearchBar">¡Busca tu próximo libro!</string>
+    <string name="txtWishlist">Lista de deseados</string>
+    <string name="txtMsgHeaderWishlist">Ésto tienes pendiente por comenzar.</string>
+    <string name="txtProgreso">Progreso</string>
+    <string name="txtMsgHeaderProgreso">¡Ya casi lo logras!</string>
+    <string name="txtTerminados">Libros Terminados</string>
+    <string name="txtMsgHeaderTerminados">¿Algo que quieras revisitar?</string>
+    <string name="txtColeccion">Colección</string>
+    <string name="txtMsgHeaderColeccion">Tu más preciado tesoro.</string>
+    <string name="txtBibliotecas">Bibliotecas cercanas</string>
+
+    <string name="btnSearchBar">Buscar</string>
+
+    <string name="msgDeleteLibroTerminado">¿Seguro que deseas eliminar este libro de tu lista de terminados? Tendrás que volver a colocarlo como "En Progreso" y actualizar tu avance para deshacer esta acción.</string>
+    <string name="msgDeleteLibroProgreso">¿Seguro que deseas eliminar este libro de tu lista de "en progreso"? Tendrás que volver a colocarlo como "En Progreso" para deshacer esta acción.</string>
+
+    <string name="msgAddWishlist">Agregar a la lista de deseados</string>
+
+
+</resources>
