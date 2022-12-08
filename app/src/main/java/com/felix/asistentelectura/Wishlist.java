@@ -1,5 +1,6 @@
 package com.felix.asistentelectura;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -7,9 +8,15 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -23,6 +30,8 @@ public class Wishlist extends AppCompatActivity {
     private ListView listWishlist;
     private Cursor cursorWishlist;
     private FloatingActionButton btnAddTerminados;
+
+    private static final int DELETE_ID = Menu.FIRST + 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +56,11 @@ public class Wishlist extends AppCompatActivity {
         cursorWishlist = db.getReadableDatabase().rawQuery(
                 "SELECT wishlist._id, titulo, autor, ('$' || precio) as precio  " +
                         "FROM wishlist INNER JOIN libros " +
-                        "ON wishlist._id = libros._id;",
-                null);
-        ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.row, cursorWishlist, new String[] {"titulo", "autor", "precio"},
-                new int[] {R.id.txtTitle, R.id.txtAutor, R.id.txtPorcentaje});
+                        "ON wishlist._id = libros._id;", null);
+
+        cursorWishlist.moveToFirst();
+        ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.row, cursorWishlist, new String[]{"titulo", "autor", "precio"},
+                new int[]{R.id.txtTitle, R.id.txtAutor, R.id.txtPorcentaje});
         listWishlist.setAdapter(adapter);
         registerForContextMenu(listWishlist);
     }
@@ -185,6 +195,47 @@ public class Wishlist extends AppCompatActivity {
             cursorWishlistTemp.requery();
         }
 
+        cursorWishlist.requery();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Borrar...").setAlphabeticShortcut('b');
+    }
+
+    public boolean onContextItemSelected(@NonNull MenuItem item)
+    {
+        switch(item.getItemId()) {
+            case DELETE_ID:
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                delete(info.id);
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void delete(long rowId) {
+        if (rowId > 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.delete)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            processDelete(rowId);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    public void processDelete(long rowId) {
+        String[] args = { String.valueOf(rowId) };
+        db.getReadableDatabase().delete("wishlist", "_id=?", args);
         cursorWishlist.requery();
     }
 }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Asistente de Lectura</string>
     <string name="ok">Aceptar</string>
+    <string name="delete">Se borrara este registro, ¿estas seguro?</string>
     <string name="cancelar">Cancelar</string>
 
     <string name="txtSaludo1">¡Hola! ¿Qué leerás hoy? </string>

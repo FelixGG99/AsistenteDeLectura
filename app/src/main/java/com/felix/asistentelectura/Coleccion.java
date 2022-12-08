@@ -1,5 +1,6 @@
 package com.felix.asistentelectura;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -9,8 +10,12 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,6 +33,7 @@ public class Coleccion extends AppCompatActivity {
     private ListView listColeccion;
     private Cursor cursorColeccion;
     private FloatingActionButton btnAddColeccion;
+    private static final int DELETE_ID = Menu.FIRST + 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +178,47 @@ public class Coleccion extends AppCompatActivity {
             cv.clear();
             cursorColeccionTemp.requery();
         }
+        cursorColeccion.requery();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Borrar...").setAlphabeticShortcut('b');
+    }
+
+    public boolean onContextItemSelected(@NonNull MenuItem item)
+    {
+        switch(item.getItemId()) {
+            case DELETE_ID:
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                delete(info.id);
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void delete(long rowId) {
+        if (rowId > 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.delete)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            processDelete(rowId);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    public void processDelete(long rowId) {
+        String[] args = { String.valueOf(rowId) };
+        db.getReadableDatabase().delete("coleccion", "_id=?", args);
         cursorColeccion.requery();
     }
 }

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:elevation="6dp"
+    android:fadingEdge="none"
     android:orientation="horizontal"
-    android:paddingBottom="10dp">
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/firasans_regular"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/firasans_semibold"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtAutor"
@@ -25,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:fontFamily="@font/firasans_regular"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
     </LinearLayout>
 
@@ -35,6 +40,19 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:fontFamily="@font/firasans_regular"
+        android:layout_gravity="center_vertical"
         android:textSize="13sp" />
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/btnDelTerminados"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        app:backgroundTint="#00FFFFFF"-->
+<!--        app:srcCompat="@drawable/trash_solid"-->
+<!--        app:elevation="0dp"-->
+<!--        app:rippleColor="@null"-->
+<!--        android:clickable="true"-->
+<!--        app:tint="@color/teal_700" />-->
 
 </LinearLayout>
