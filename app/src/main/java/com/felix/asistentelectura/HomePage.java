@@ -20,6 +20,7 @@ public class HomePage extends AppCompatActivity {
     private Button btnTerminados;
     private Button btnWishlist;
     private Button btnColeccion;
+    private Button btnProgreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,13 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         // Lists
-        listProgreso    = findViewById(R.id.listWishlist);
+        listProgreso    = findViewById(R.id.listProgresoPortada);
 
         // Buttons
         btnTerminados   = findViewById(R.id.btnTerminados);
         btnWishlist     = findViewById(R.id.btnWishlist);
         btnColeccion    = findViewById(R.id.btnColeccion);
+        btnProgreso     = findViewById(R.id.btnProgresoPortada);
 
         // Button Listeners
         btnTerminados.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,13 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        btnProgreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, Progreso.class));
+            }
+        });
+
         db = new DataBaseHelper(this);
         populateListProgreso(db);
     }
@@ -72,32 +81,3 @@ public class HomePage extends AppCompatActivity {
         registerForContextMenu(listProgreso);
     }
 }
-
-//public class HomePage extends ListActivity {
-//
-//    private DataBaseHelper db;
-//    private Cursor cursorProgreso;
-//    private ListView listProgreso;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        db = new DataBaseHelper(this);
-//        populateListProgreso(db);
-//    }
-//
-//    private void populateListProgreso(DataBaseHelper db){
-////        cursorProgreso = db.getReadableDatabase().rawQuery(
-////                "SELECT progreso._id, titulo, autor, porcentaje " +
-////                        "FROM progreso INNER JOIN libros " +
-////                        "ON progreso._id = libros._id WHERE porcentaje < 1;",
-////            null);
-//        cursorProgreso = db.getReadableDatabase().rawQuery("SELECT _id, titulo, autor FROM libros;", null);
-//        //cursorProgreso.moveToFirst();
-//        ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.row, cursorProgreso, new String[] {"titulo", "autor"},
-//                new int[] {R.id.txtTitle, R.id.txtAutor});
-//        setListAdapter(adapter);
-//        registerForContextMenu(getListView());
-//    }
-//}

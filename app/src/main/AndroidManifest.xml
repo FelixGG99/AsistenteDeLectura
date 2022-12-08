@@ -13,6 +13,13 @@
         android:theme="@style/Theme.AsistenteLectura"
         tools:targetApi="31">
         <activity
+            android:name=".Progreso"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Coleccion"
             android:exported="false">
             <meta-data

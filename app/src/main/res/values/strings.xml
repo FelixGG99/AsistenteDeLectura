@@ -10,6 +10,7 @@
     <string name="txtMsgHeaderWishlist">Ésto tienes pendiente por comenzar.</string>
     <string name="txtProgreso">Progreso</string>
     <string name="txtMsgHeaderProgreso">¡Ya casi lo logras!</string>
+    <string name="txtMsgHeaderProgresoPortada">Éste es tu avance.</string>
     <string name="txtTerminados">Libros Terminados</string>
     <string name="txtMsgHeaderTerminados">¿Algo que quieras revisitar?</string>
     <string name="txtColeccion">Colección</string>
