@@ -34,6 +34,7 @@ public class Coleccion extends AppCompatActivity {
     private Cursor cursorColeccion;
     private FloatingActionButton btnAddColeccion;
     private static final int DELETE_ID = Menu.FIRST + 3;
+    private static final int EN_PROGRESO_ID = Menu.FIRST + 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class Coleccion extends AppCompatActivity {
         final Wishlist.DialogWrapper dialogWrapper = new Wishlist.DialogWrapper(addView);
 
         new AlertDialog.Builder(this)
-                .setTitle(R.string.msgAddWishlist)
+                .setTitle(R.string.msgAddColeccion)
                 .setView(addView)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -159,7 +160,6 @@ public class Coleccion extends AppCompatActivity {
             cv.put("titulo", titulo);
             cv.put("autor", autor);
             cv.put("total_paginas", totalPaginas);
-            cv.put("genero_id", 1);
             db.getWritableDatabase().insert("libros", null, cv);
             cv.clear();
             cursorLibros.requery();
@@ -184,17 +184,35 @@ public class Coleccion extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, EN_PROGRESO_ID, Menu.NONE, "Marcar en progreso...").setAlphabeticShortcut('a');
         menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Borrar...").setAlphabeticShortcut('b');
     }
 
-    public boolean onContextItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
+            case EN_PROGRESO_ID:
+                markInProgress(info.id);
+                break;
             case DELETE_ID:
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 delete(info.id);
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void markInProgress(long rowId){
+
+        Cursor cursor = db.getReadableDatabase().rawQuery("SELECT _id FROM progreso WHERE _id = " + rowId, null);
+        if(cursor.getCount() > 0){
+            Toast.makeText(Coleccion.this, "El libro ya se encontraba en progreso.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        ContentValues cv = new ContentValues();
+        cv.put("_id", rowId);
+        cv.put("paginas_leidas", 0);
+        cv.put("porcentaje", 0.0);
+        db.getWritableDatabase().insert("progreso", null, cv);
     }
 
     private void delete(long rowId) {
@@ -219,6 +237,7 @@ public class Coleccion extends AppCompatActivity {
     public void processDelete(long rowId) {
         String[] args = { String.valueOf(rowId) };
         db.getReadableDatabase().delete("coleccion", "_id=?", args);
+        db.getReadableDatabase().delete("progreso", "_id=?", args);
         cursorColeccion.requery();
     }
 }

@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Wishlist extends AppCompatActivity {
 
     private DataBaseHelper db;
@@ -31,6 +34,7 @@ public class Wishlist extends AppCompatActivity {
     private Cursor cursorWishlist;
     private FloatingActionButton btnAddTerminados;
 
+    private static final int ADQUIRIDO_ID = Menu.FIRST + 6;
     private static final int DELETE_ID = Menu.FIRST + 3;
 
     @Override
@@ -177,7 +181,6 @@ public class Wishlist extends AppCompatActivity {
             cv.put("titulo", titulo);
             cv.put("autor", autor);
             cv.put("total_paginas", totalPaginas);
-            cv.put("genero_id", 1);
             db.getWritableDatabase().insert("libros", null, cv);
             cv.clear();
             cursorLibros.requery();
@@ -201,17 +204,31 @@ public class Wishlist extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, ADQUIRIDO_ID, Menu.NONE, "Mover a coleccion...").setAlphabeticShortcut('a');
         menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Borrar...").setAlphabeticShortcut('b');
     }
 
-    public boolean onContextItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
+            case ADQUIRIDO_ID:
+                moveToColeccion(info.id);
+                break;
             case DELETE_ID:
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 delete(info.id);
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void moveToColeccion(long rowId){
+        processDelete(rowId);
+
+        String pattern = "dd/MM/yyyy";
+        String dateInString =new SimpleDateFormat(pattern).format(new Date());
+        ContentValues cv = new ContentValues();
+        cv.put("_id", rowId);
+        cv.put("fecha_adquisicion", dateInString);
+        db.getWritableDatabase().insert("coleccion", null, cv);
     }
 
     private void delete(long rowId) {

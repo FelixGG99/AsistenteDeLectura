@@ -22,6 +22,7 @@ public class HomePage extends AppCompatActivity {
     private Button btnColeccion;
     private Button btnProgreso;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +62,18 @@ public class HomePage extends AppCompatActivity {
         btnProgreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage.this, Progreso.class));
+                startActivity(new Intent(HomePage.this, ProgresoScreen.class));
             }
         });
 
         db = new DataBaseHelper(this);
         populateListProgreso(db);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cursorProgreso.requery();
     }
 
     private void populateListProgreso(DataBaseHelper db){

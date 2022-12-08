@@ -24,6 +24,7 @@
             <TextView
                 android:id="@+id/txtSaludo"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
@@ -65,7 +66,7 @@
                     android:layout_marginEnd="24dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/firasans_semibold"
-                    android:text="@string/txtProgreso"
+                    android:text="@string/txtProgresoPortada"
                     android:textSize="25sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -95,7 +96,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/firasans"
                 android:text="@string/txtMsgHeaderProgresoPortada"
-                android:textSize="16sp"
+                android:textSize="0sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,32 +126,46 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
+            android:id="@+id/btnBibliotecas"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.05"
+            android:text="@string/btnBibliotecas"
+            android:letterSpacing="0"
+            android:textAlignment="center"
+            android:textSize="10.5sp"
+            app:cornerRadius="0dp" />
+
+        <Button
             android:id="@+id/btnWishlist"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/txtWishlist"
+            android:text="@string/btnWishlistPortada"
             android:textAlignment="center"
             android:textSize="11sp"
             app:cornerRadius="0dp"
+            android:letterSpacing="0"
             app:icon="@drawable/bookmark_solid"
-            app:iconSize="15dp" />
+            app:iconSize="10dp" />
 
         <Button
             android:id="@+id/btnColeccion"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="Colección"
+            android:text="@string/btnColeccionPortada"
             android:textAlignment="center"
             android:textSize="11sp"
             app:cornerRadius="0dp"
+            android:letterSpacing="0"
             app:icon="@drawable/book_solid"
-            app:iconSize="15dp" />
+            app:iconSize="10dp" />
 
         <Button
             android:id="@+id/btnTerminados"
@@ -158,13 +173,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/txtTerminados"
+            android:text="@string/btnTerminadosPortada"
             android:textAlignment="center"
+            android:letterSpacing="0"
             android:textSize="11sp"
             app:cornerRadius="0dp"
             app:icon="@drawable/check_solid"
-            app:iconPadding="8dp"
-            app:iconSize="15dp" />
+            app:iconPadding="3dp"
+            app:iconSize="8dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

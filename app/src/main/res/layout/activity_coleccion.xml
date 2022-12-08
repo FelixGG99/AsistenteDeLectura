@@ -37,6 +37,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="24dp"
+                android:textColor="@color/black"
                 android:fontFamily="@font/firasans_semibold"
                 android:text="@string/txtColeccion"
                 android:textSize="25sp"
@@ -84,13 +85,22 @@
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-        <!--                    android:id="@+id/btnDeleteTerminados"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="match_parent"-->
-        <!--                    android:layout_alignParentLeft="true"-->
-        <!--                    app:srcCompat="@drawable/trash_solid"-->
-        <!--                    app:tint="@null" />-->
+        <TextView
+            android:id="@+id/txtOpciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="100dp"
+            android:fontFamily="@font/firasans_regular"
+            android:text="@string/moreOptions"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnAddColeccion"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddColeccion"
